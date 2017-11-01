@@ -1,0 +1,35 @@
+This repository contains the code for the paper "Adversarial Examples
+Are Not Easily Detected: Bypassing Ten Detection Methods".
+
+This code is very much "research code": it will reproduce all of the
+results in the paper, but may require some tweaking to do so. I would
+not recommend building on top of this code; it is provided as a
+reference of exact details of the experiments and attacks. The attacks
+performed are only designed to bypass these specific defenses, and
+will probably not work on other defenses. Properly evaluating a new
+defense will require performing this type of evaluation on that other
+defense, not just applying these attacks to a new defense.
+
+To make this code works will require also cloning the repository at
+https://github.com/carlini/nn_robust_attacks to make the adversarial
+examples.
+
+Some difficulties to be aware of:
+ - there are some dependencies between files (e.g., some file generate
+   outputs that other files use).
+ - some of the files contain the code for multiple experiments (e.g.,
+   both the standard and black-box attack) and one of these two will
+   be commented out.
+ - some files are set up to run more quickly (e.g., by training a
+   resnet for only 20 epochs) for simple tests and should be changed
+   to a larger number to achieve a proper analysis.
+ - a few of the experiments are finiky (e.g., training the layer
+   detector and CIFAR outlier class detector will need hyperparameter
+   search to do well, otherwise it won't find a good model). However,
+   if this search is not done completely, the results should only be
+   stronger than the paper results (I tried my best to find the best
+   possible defense parameters + random initialization).
+
+
+This code is provided under the BSD 2-Clause, Copyright 2017 to
+Nicholas Carlini.
